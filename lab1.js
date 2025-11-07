@@ -32,3 +32,20 @@ let calculateTotalCost = (price, quantity, taxRate) => {
 }
 
 console.log(calculateTotalCost(2.99, 3, 0.03).toLocaleString("en-US", { style: "currency", currency: "USD" }));
+
+let checkEligibility = (age, isEmployed) => {
+    if (age < 18) {
+        return "You are not eligible :(";
+    }
+
+    switch (isEmployed) {
+        case true:
+            return "You are eligible :D";
+        case false:
+            return "You are conditionally eligible :)"
+        default:
+            return "Error";
+    }
+}
+
+console.log(checkEligibility(`23`, true))
