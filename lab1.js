@@ -21,17 +21,22 @@ let capitalize = (name) => {
 
 console.log(formatFullName(`gabriel`, `jimenez`));
 
-let calculateTotalCost = (price, quantity, taxRate) => {
-    if (typeof price != "number") {
+let calculateTotalCost = (price, quantity, taxRate, discount) => { // Kinda evil that JavaScript does not support method overloading
+    if (typeof price != "number" || typeof quantity != "number" || typeof taxRate != "number" || typeof discount != "number") {
         return "Invalid number";
     }
 
-    let totalCost = (price * quantity) * (1 + taxRate);
+    // in case entered discount is negative, leave it at 0
+    if (discount < 0) {
+        discount = 0;
+    }
+
+    let totalCost = ((price * quantity) - discount) * (1 + taxRate);
 
     return totalCost;
 }
 
-console.log(calculateTotalCost(2.99, 3, 0.03).toLocaleString("en-US", { style: "currency", currency: "USD" }));
+console.log(calculateTotalCost(2.99, 3, 0.03, 1).toLocaleString("en-US", { style: "currency", currency: "USD" }));
 
 let checkEligibility = (age, isEmployed) => {
     if (age < 18) {
